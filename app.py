@@ -8,7 +8,7 @@ from flask import flash
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_file = "sqlite:///{}".format(os.path.join(project_dir, "database.db"))
 
-app = Flask ('__name__')
+app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your secret key'
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
@@ -30,7 +30,7 @@ class Pets(db.Model):
     cidade = db.Column(db.String, nullable=False)
     
 @app.route('/')
-def index ():
+def index():
     return render_template('index.html')
 
 @app.route("/doeseupet", methods=('GET', 'POST'))
@@ -55,14 +55,10 @@ def doeseupet():
         return redirect(url_for('index', success=True))
     return render_template('doeseupet.html')
 
-
 @app.route("/adote")
 def adote():
     pets = Pets.query.all()
-    return render_template("adote.html" , pets=pets)
-
-if __name__ == "__main__":
-    app.run()
+    return render_template("adote.html", pets=pets)
 
 @app.route('/pet/<int:pet_id>')
 def view_pet(pet_id):
@@ -86,9 +82,6 @@ def excluir_pet(pet_id):
 def quemsomos():
     return render_template("quemsomos.html")
 
-if __name__ == "__main__":
-    app.run(debug=True)
-
 @app.route('/filtro')
 def filtro():
     pets = Pets.query.all()
@@ -98,15 +91,16 @@ def filtro():
     else:
         pets_filtrados = pets
     
-
     cidades_dict = {}
     for pet in pets:
         if pet.cidade not in cidades_dict:
             cidades_dict[pet.cidade] = []
         cidades_dict[pet.cidade].append(pet)
     
-
     cidades = list(cidades_dict.keys())
     cidades.sort()  
     
     return render_template('filtro.html', pets=pets_filtrados, cidades=cidades)
+
+if __name__ == '__main__':
+    app.run(debug=True)
