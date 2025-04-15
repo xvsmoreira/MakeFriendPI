@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html lang=”pt-br”>
+	<head>
+		<title>Make a Friend</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+	<body class="is-preload">
+			<div id="wrapper">
+				<header id="header">
+					<h1><a href="{{ url_for('index') }}">Make a Friend</a></h1>
+					<nav class="links">
+						<ul>
+							<li><a href="{{ url_for('adote') }}">Adote seu Pet</a></li>
+							<li><a href="{{ url_for('doeseupet') }}">Doe Seu Pet</a></li>
+							<li><a href="{{ url_for('quemsomos') }}">Quem Somos</a></li>
+						</ul>
+						<button id="toggle-theme" class="toggle-button" style="position: absolute; top: 10px; right: 10px;">C</button>
+					  </nav>
+					  
+									<script>/*Java modo escuro*/
+										const toggleButton = document.getElementById('toggle-theme');
+										const body = document.body;
+									
+										toggleButton.addEventListener('click', () => {
+										body.classList.toggle('dark-mode');
+										});
+									</script>
+
+											<style>/*Estilização modo escuro*/
+												.toggle-button {
+												background-color: #333;
+												color: #fff; 
+												border: none;
+												padding: 10px 20px;
+												font-size: 16px;
+												cursor: pointer;
+												}
+												.toggle-button:hover {
+												background-color: #444;
+												}
+												.dark-mode .toggle-button {
+												background-color: #fff;
+												color: #333;
+												}
+											</style>
+
+					<nav class="main">
+					</nav>
+				</header>
+				<div vw class="enabled"> <!-- Vlibras -->
+					<div vw-access-button class="active"></div>
+					<div vw-plugin-wrapper>
+					  <div class="vw-plugin-top-wrapper"></div>
+					</div>
+				</div>
+				  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+				  <script>
+					new window.VLibras.Widget('https://vlibras.gov.br/app');
+				  </script>
+            </div> 
+			<br>
+			<center>
+				</div><br>
+			<div class="container">
+				<div class="pet-profile">
+					<img src="{{ url_for('servir_imagem', filename=pet.foto) }}" alt="{{ pet.nome }}" width="650" style="float: left; margin-right: 20px;"><br>
+				<div class="pet-info">
+					<h1>Nome do Pet</h1>
+					<p>{{ pet.nome }}</p><br>
+					<h2>Idade do Pet</h2>
+					<p>{{ pet.idade }} anos</p><br>
+					<h2>História do Pet</h2>
+					<p>{{ pet.historia }}</p><br>
+					<h2>Localização</h2>
+					<p>{{ pet.rua }}, {{ pet.numero }} - {{ pet.cidade }}</p><br>
+					<h2>Dados do Tutor</h2>
+					<p>Nome Dono: {{ pet.tutor }}</p><br>
+					<p>Telefone: {{ pet.telefone }}<br><img src="{{ url_for('static', filename='imagens/zap.png') }}" style="width: 60px; height: 60px; pointer-events: none;" /></p><br>
+						<button class="button-link">Quero Adotar</button>
+				</div>
+				<br>
+				<div class="adoption-form" style="display: none;">
+					<h2>Preencha o formulário de adoção</h2>
+					<div class="input-formulario">
+						<label for="nome-adoptante">Nome:</label>
+						<input type="text" id="nome-adoptante" name="nome-adoptante" required>
+					</div>	
+					<div class="input-formulario">
+						<label for="email-adoptante">Email:</label>
+						<input type="email" id="email-adoptante" name="email-adoptante" required>
+					</div>
+					<div class="input-formulario">	
+						<label for="telefonee">Telefone</label>
+						<input type="tel" id="telefonee" name="telefonee" placeholder="(XX) XXXXX-XXXX" required>
+						<script>
+							const telefoneInput = document.getElementById('telefonee');
+					
+							telefoneInput.addEventListener('input', () => {
+								const inputValue = telefoneInput.value.replace(/\D/g, '');
+								if (inputValue.length === 10) {
+									const formattedValue = `(${inputValue.substring(0, 2)}) ${inputValue.substring(2, 7)}-${inputValue.substring(7, 11)}`;
+									telefoneInput.value = formattedValue;
+								}
+							});
+					
+							telefoneInput.addEventListener('paste', (event) => {
+								const pastedText = event.clipboardData.getData('text');
+								if (pastedText.match(/^\d{10}$/)) {
+									event.preventDefault();
+									const formattedValue = `(${pastedText.substring(0, 2)}) ${pastedText.substring(2, 7)}-${pastedText.substring(7, 11)}`;
+									telefoneInput.value = formattedValue;
+								}
+							});
+						</script>
+					</div>	
+					<form action="{{ url_for('excluir_pet', pet_id=pet.id) }}" method="post" onsubmit="return confirmDelete()">
+						<button type="submit" class="button-link">Confirmar Adoção</button>
+					</form>	
+					<script>
+						function confirmDelete() {
+							return confirm('Você tem certeza de que deseja adotar esse pet fofinho? 🐾 Nós enviaremos um email de confirmação com todos os detalhes! 💌');
+						}
+					</script>
+				</div>
+					<script>
+						const adoptButton = document.querySelector('.button-link');
+						const adoptionForm = document.querySelector('.adoption-form');
+				
+						adoptButton.addEventListener('click', () => {
+							adoptionForm.style.display = 'block';
+						});
+					</script>
+			</div>
+		</body>	
+ </html>     

@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html lang=”pt-br”>
+	<head>
+		<title>Make a Friend</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+	<body class="is-preload">
+			<div id="wrapper">
+				<header id="header">
+					<h1><a href="{{ url_for('index') }}">Make a Friend</a></h1>
+					<nav class="links">
+						<ul>
+							<li><a href="{{ url_for('adote') }}">Adote seu Pet</a></li>
+							<li><a href="#">Doe Seu Pet</a></li>
+							<li><a href="{{ url_for('quemsomos') }}">Quem Somos</a></li>
+						</ul>
+						<button id="toggle-theme" class="toggle-button" style="position: absolute; top: 10px; right: 10px;">C</button>
+					  </nav>
+					  
+								<script>/*Java modo escuro*/
+									const toggleButton = document.getElementById('toggle-theme');
+									const body = document.body;
+								
+									toggleButton.addEventListener('click', () => {
+									body.classList.toggle('dark-mode');
+									});
+								</script>
+
+										<style>/*Estilização modo escuro*/
+											.toggle-button {
+											background-color: #333;
+											color: #fff; 
+											border: none;
+											padding: 10px 20px;
+											font-size: 16px;
+											cursor: pointer;
+											}
+											.toggle-button:hover {
+											background-color: #444;
+											}
+											.dark-mode .toggle-button {
+											background-color: #fff;
+											color: #333;
+											}
+										</style>
+					<nav class="main">
+					</nav>
+				</header>
+				<div vw class="enabled"> <!-- Vlibras -->
+					<div vw-access-button class="active"></div>
+					<div vw-plugin-wrapper>
+					  <div class="vw-plugin-top-wrapper"></div>
+					</div>
+				</div>
+				  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+				  <script>
+					new window.VLibras.Widget('https://vlibras.gov.br/app');
+				  </script>
+	<div class="formulario-container">
+		<div class="formulario">
+			<form id="registration-form" method="post" enctype="multipart/form-data">	
+					<div class="input-formulario1">
+						<label for="foto" class="icon-formulario">
+								<i class="fas fa-user-circle"></i>
+								<span><img src="{{ url_for('static', filename='imagens/perfil.jpg') }}"  alt="Foto do Pet" id="foto-preview"></span>
+								<input type="file" id="foto" name="foto" accept="image/*" required>
+						</label>
+					</div>
+					<script src="{{ url_for('static', filename='java/foto.js') }}"></script><br>
+					<div class="input-formulario">
+								<label for="name">Nome do Pet:</label>
+								<input type="text" id="nome" name="nome" required>
+					</div>
+					<div class="input-formulario">
+						<label for="idade">Idade do Pet:</label>
+						<input type="number" id="idade" name="idade" min="1" max="120" required>
+					</div>
+					<div class="input-formulario">
+								<label for="historia">História do Pet:</label>
+								<textarea id="historia" name="historia" rows="4" cols="50" required></textarea>
+					</div>
+					<div class="input-formulario">
+						<label for="tutor">Nome do Tutor:</label>
+						<input type="text" id="tutor" name="tutor" required>
+					</div>
+					<div class="input-formulario">
+						<label for="telefone">Telefone do Tutor:</label>
+						<input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" required>
+						<script>
+							const telefoneInput = document.getElementById('telefone');
+					
+							telefoneInput.addEventListener('input', () => {
+								const inputValue = telefoneInput.value.replace(/\D/g, '');
+								if (inputValue.length === 10) {
+									const formattedValue = `(${inputValue.substring(0, 2)}) ${inputValue.substring(2, 7)}-${inputValue.substring(7, 11)}`;
+									telefoneInput.value = formattedValue;
+								}
+							});
+					
+							telefoneInput.addEventListener('paste', (event) => {
+								const pastedText = event.clipboardData.getData('text');
+								if (pastedText.match(/^\d{10}$/)) {
+									event.preventDefault();
+									const formattedValue = `(${pastedText.substring(0, 2)}) ${pastedText.substring(2, 7)}-${pastedText.substring(7, 11)}`;
+									telefoneInput.value = formattedValue;
+								}
+							});
+						</script>
+					</div>	
+					<div class="input-formulario">
+						<label for="cep">CEP:</label>
+						<input type="text" id="cep" name="cep" required>
+					</div>
+					<script>
+						$(document).ready(function() {
+						  $('#cep').change(function() {
+							var cep = $(this).val();
+							if (cep.length === 8) {
+							  $.getJSON('https://viacep.com.br/ws/' + cep + '/json/', function(data) {
+								if (data.erro) {
+								  alert('CEP inválido');
+								} else {
+								  $('#rua').val(data.logradouro);
+								  $('#bairro').val(data.bairro);
+								  $('#cidade').val(data.localidade);
+								}
+							  });
+							}
+						  });
+						});
+						</script>	
+					<div class="input-formulario">
+								<label for="street">Rua:</label>
+								<input type="text" id="rua" name="rua" required>
+					</div>
+					<div class="input-formulario">
+								<label for="numero">Número:</label>
+								<input type="text" id="numero" name="numero" required>
+					</div>
+					<div class="input-formulario">
+								<label for="complemento">Complemento:</label>
+								<input type="text" id="complemento" name="complemento">
+					</div>
+					<div class="input-formulario">
+								<label for="bairro">Bairro:</label>
+								<input type="text" id="bairro" name="bairro" required>
+					</div>
+					<div class="input-formulario">
+								<label for="cidade">Cidade:</label>
+								<input type="text" id="cidade" name="cidade" required>
+					</div>
+					<div class="input-formulario">
+						<form action="{{ url_for('index') }}" id="doar-form">
+							<button type="submit" class="doar-button">Doar</button>
+						</form>
+		</div>
+    </div>
+	</body>
+</html>

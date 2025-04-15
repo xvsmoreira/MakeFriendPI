@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html lang=”pt-br”>
+	<head>
+			<title>Make a Friend</title>
+			<meta charset="utf-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+			<link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+	</head>
+	<body class="is-preload">
+			<div id="wrapper">
+					<header id="header">
+						<h1><a href="{{ url_for('index') }}">Make a Friend</a></h1>
+						<nav class="links">
+							<ul>
+							  <li><a href="{{ url_for('adote') }}">Adote seu Pet</a></li>
+							  <li><a href="{{ url_for('doeseupet') }}">Doe Seu Pet</a></li>
+							  <li><a href="{{ url_for('quemsomos') }}">Quem Somos</a></li>
+							</ul>
+							<button id="toggle-theme" class="toggle-button" style="position: absolute; top: 10px; right: 10px;">C</button>
+						  </nav>
+
+										<script> /*Java modo escuro*/
+											const toggleButton = document.getElementById('toggle-theme');
+											const body = document.body;
+										
+											toggleButton.addEventListener('click', () => {
+											body.classList.toggle('dark-mode');
+											});
+										</script>	
+
+												<style> /*Estilização modo escuro*/
+													.toggle-button {
+													background-color: #333;
+													color: #fff; 
+													border: none;
+													padding: 10px 20px;
+													font-size: 16px;
+													cursor: pointer;
+													}
+													.toggle-button:hover {
+													background-color: #444;
+													}
+													.dark-mode .toggle-button {
+													background-color: #fff;
+													color: #333;
+													}
+												</style>
+					</header>
+					<div vw class="enabled"> <!-- Vlibras -->
+						<div vw-access-button class="active"></div>
+						<div vw-plugin-wrapper>
+						  <div class="vw-plugin-top-wrapper"></div>
+						</div>
+					</div>
+					  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+					  <script>
+						new window.VLibras.Widget('https://vlibras.gov.br/app');
+					  </script>
+					{% if request.args.get('success') %}
+					<div class="success-message">
+						<center><p>Pet cadastro para adoção!!!</p></center>
+					</div>
+				{% endif %}
+			<div class="slider">
+				<div class="slides">
+							<input type="radio" name="radio-btn" id="radio1">
+							<input type="radio" name="radio-btn" id="radio2">
+							<input type="radio" name="radio-btn" id="radio3">
+							<input type="radio" name="radio-btn" id="radio4">
+						<div class="slide first">
+							<img src="{{ url_for('static', filename='imagens/slide1.jpg') }}" alt="imagem1"/>
+						</div>
+						<div class="slide">
+							<img src="{{ url_for('static', filename='imagens/slide3.jpg') }}" alt="imagem1"/>
+						</div>
+						<div class="slide">
+							<img src="{{ url_for('static', filename='imagens/slide4.jpg') }}" alt="imagem1"/>
+						</div>
+						<div class="slide">
+							<img src="{{ url_for('static', filename='imagens/ultima.jpg') }}" alt="imagem1"/>
+						</div>
+						<div class="slide">
+						</div>	
+						<div class="navigation-auto">
+							<div class="auto-btn1"></div>
+					<div class="auto-btn2"></div>
+					<div class="auto-btn3"></div>
+					<div class="auto-btn4"></div>
+						</div>
+				</div>
+				<div class="manual-navigation">
+					<label for="radio1" class="manual-btn"></label>
+					<label for="radio2" class="manual-btn"></label>
+					<label for="radio3" class="manual-btn"></label>
+					<label for="radio4" class="manual-btn"></label>
+				
+				</div>	
+		</div>	
+		<script src="{{ url_for('static', filename='java/script.js') }}"></script>
+		<div id="texto-empresa">
+				<h3><center><font size="14px">MAKE A FRIEND</font></center></h3><br>
+			<div id="texto-empresa1">
+				<h2><font size="5px">Você sabia que agora ficou mais fácil adotar seu pet com o WhatsApp?<img src="{{ url_for('static', filename='imagens/zap.png') }}" width="50px"/></font></h2><br>
+					<font size="5px" type="arial">			
+										
+										É incrível como as coisas estão mais simples hoje em dia, não é mesmo? Agora, adotar um novo membro peludo para a família pode ser feito com apenas alguns cliques no WhatsApp! Não é demais? Não precisa se preocupar com formulários longos e complicados. Aqui, a praticidade é a palavra de ordem. Você encontra o pet dos seus sonhos e, em seguida, é só entrar em contato diretamente pelo WhatsApp. Simples assim!
+
+										Nós entendemos que a vida já é corrida o suficiente, então queremos tornar o processo de adoção o mais fácil e ágil possível para você. Não há mais barreiras entre você e seu futuro companheiro peludo. Venha fazer parte dessa experiência de adoção sem complicações. Estamos aqui para tornar seu desejo de adotar um pet uma realidade rápida e descomplicada. Então, o que está esperando? Seu novo amigo peludo está apenas a uma mensagem de distância no WhatsApp!
+										<br><br><br>
+										<h3>PETs com necessidades especiais: quais os principais cuidados</h3>
+										<img src="{{ url_for('static', filename='imagens/noti1.jpeg') }}" style="float: left; margin-right: 10px; width: 200px; height: 150px;">
+										<p>Animais de estimação com necessidades especiais é um termo amplo sem um significado universal. Geralmente inclui uma série de deficiências físicas, condições médicas crônicas ou problemas comportamentais que exigem vigilância contínua ou cuidados especiais para gerenciar.<br>Vaja a dica completa em: <a href="https://fisiocarepet.com.br/pets-com-necessidades-especiais-quais-os-principais-cuidados/#:~:text=Converse%20com%20um%20veterin%C3%A1rio%20de,mobilidade%20e%20voltem%20a%20andar."_blank">Fisio Care pet</a></p>
+										<br>
+										<h3>Motivos para adotar um pet deficiente</h3>
+										<img src="{{ url_for('static', filename='imagens/noti2.jpg') }}" alt="Pet feliz" style="float: left; margin-right: 10px; width: 200px; height: 150px;">
+										<p>É fato que os pets também podem apresentar deficiências assim como nós, humanos. Muitas vezes eles nascem assim, ficam nessa condição por acidentes e velhice ou como resultado de maus-tratos constantes. Geralmente, esses pets ficam longos períodos na fila de adoção em ONGs por serem “diferentes” dos outros.<br>Vaja a dica completa em: <a href="https://www.petlove.com.br/dicas/motivos-para-adotar-um-pet-deficiente"_blank">Petlove</a></p>
+										<br>
+										<h3>Pets com deficiência: como combater o estigma e a importância da adoção</h3>
+										<img src="{{ url_for('static', filename='imagens/noti3.jpg') }}" alt="Pet feliz" style="float: left; margin-right: 10px; width: 200px; height: 150px;">
+										<p>O preconceito e a ignorância destina estes animais para o final da fila de adoção, mas eles são capazes de se adaptar bem às mais diversas condições.<br>Vaja a dica completa em: <a href="https://vidadebicho.globo.com/especiais/noticia/2022/06/pets-com-deficiencia-como-combater-o-estigma-e-importancia-da-adocao.ghtml"_blank">Vida de bicho</a></p>
+										<br>
+										<h3>5 formas de brincar com um gato com deficiência nas patas traseiras</h3>
+										<img src="{{ url_for('static', filename='imagens/noti4.jpg') }}" alt="Pet feliz" style="float: left; margin-right: 10px; width: 200px; height: 150px;">
+										<p>Um gato com deficiência na pata traseira pede cuidados especiais. Mas isso não quer dizer que ele não possa brincar e ter uma vida o mais normal possível. Algumas adaptações são necessárias para promover diversão para um pet com deficiência, mas fora isso, ele consegue aprontar como qualquer bichano.<br>Vaja a dica completa em: <a href="https://www.patasdacasa.com.br/noticia/5-formas-de-brincar-com-um-gato-com-deficiencia-nas-patas-traseiras#:~:text=Voc%C3%AAs%20devem%20brincar%20em%20um,instigando%20a%20capturar%20o%20brinquedo."_blank">Patas Casa</a></p>
+					</font>
+			</div>
+		</div>
+										<div class="image-grid">
+												<div class="image-item">
+														<img src="{{ url_for('static', filename='imagens/pacoca.jpg') }}" alt="Image 1">
+														<center><h3>Paçoca- 5 Anos</h3></center>
+												</div>
+												<div class="image-item">
+														<img src="{{ url_for('static', filename='imagens/sushi.jpg') }}" alt="Image 2">
+														<center><h3>Sushi - 2 Anos</h3></center>
+												</div>
+												<div class="image-item">
+														<img src="{{ url_for('static', filename='imagens/pintado.jpg') }}" alt="Image 3">
+														<center><h3>Pintado - 3 Anos</h3></center>
+												</div>
+												<div class="image-item">
+														<img src="{{ url_for('static', filename='imagens/pirata.jpg') }}" alt="Image 4">
+														<center><h3>Pirata - 1 Ano</h3></center>
+												</div>
+										</div>
+		<footer>
+			<div class="footer-logo">
+				<img src="{{ url_for('static', filename='imagens/logo.png') }}" alt="Logotipo da empresa">
+			</div>
+			<center><h3>COPYRIGHT © 2024</h3></center>
+		</footer>
+	</body>
+</html>

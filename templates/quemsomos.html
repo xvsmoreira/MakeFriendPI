@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+<head>
+    <title>Make a Friend</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+<body class="is-preload">
+<div id="wrapper">
+        <header id="header">
+            <h1><a href="{{ url_for('index') }}">Make a Friend</a></h1>
+            <nav class="links">
+                <ul>
+                    <li><a href="{{ url_for('adote') }}">Adote seu Pet</a></li>
+                    <li><a href="{{ url_for('doeseupet') }}">Doe Seu Pet</a></li>
+                    <li><a href="{{ url_for('quemsomos') }}">Quem Somos</a></li>
+                </ul>
+                <button id="toggle-theme" class="toggle-button" style="position: absolute; top: 10px; right: 10px;">C</button>
+              </nav>
+              
+                        <script>/*Java modo escuro*/
+                          const toggleButton = document.getElementById('toggle-theme');
+                          const body = document.body;
+                        
+                          toggleButton.addEventListener('click', () => {
+                            body.classList.toggle('dark-mode');
+                          });
+                        </script>
+              
+                                    <style>
+                                      .toggle-button {
+                                        background-color: #333;
+                                        color: #fff; 
+                                        border: none;
+                                        padding: 10px 20px;
+                                        font-size: 16px;
+                                        cursor: pointer;
+                                      }
+                                      .toggle-button:hover {
+                                        background-color: #444;
+                                      }
+                                      .dark-mode .toggle-button {
+                                        background-color: #fff;
+                                        color: #333;
+                                      }
+                                      </style>
+
+            <nav class="main">
+            </nav>
+        </header>
+        <div vw class="enabled"> <!-- Vlibras -->
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+              <div class="vw-plugin-top-wrapper"></div>
+            </div>
+        </div>
+          <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+          <script>
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+          </script>
+        <div id="texto-empresa">
+            <h3><center><font size="14px">Quem somos nós?</font></center></h3><br>
+            <div id="texto-empresa1">
+                <font size="5px" type="arial">
+                    Nós, do eixo de computação, estamos atualmente em processo de desenvolvimento de um website com o propósito de abordar uma preocupação significativa em nossa comunidade: a questão do bem-estar animal. Observamos uma lacuna substancial no conhecimento da população sobre a existência do Centro de Controle de Zoonoses de Itaquaquecetuba. Portanto, o objetivo primordial deste projeto é facilitar o acesso das pessoas a essa instituição e promover um engajamento mais amplo na causa animal.
+            
+                    É evidente que uma parte considerável dos cidadãos desconhece a presença e as funções desempenhadas pelo referido centro. Nesse contexto, almejamos fornecer uma plataforma online que não apenas informe sobre a existência e o papel fundamental do Centro de Controle de Zoonoses, mas também incentive a comunidade a se envolver ativamente na assistência aos animais desamparados.
+            
+                    Acreditamos firmemente que, ao aumentar a conscientização e facilitar o acesso às informações relevantes, podemos catalisar uma mudança positiva em nossa cidade, garantindo uma proteção mais eficaz e compassiva para os animais que compartilham nosso ambiente urbano. Este projeto representa nosso compromisso em contribuir para o bem-estar coletivo e promover uma coexistência harmoniosa entre os seres humanos e os animais em nossa comunidade.
+                </font>
+            </div>
+            <br>
+                 <div id="video">
+                        <video controls poster="demo.jpg" style="width: 100%; height: 50vh;">
+                                <source src="{{ url_for('static', filename='imagens/video1.mp4') }}" type="video/mp4">
+                                <source src="{{ url_for('static', filename='imagens/video1.webm') }}" type="video/webm">
+                                <source src="{{ url_for('static', filename='imagens/video1.ogg') }}" type="video/ogg">
+                                <object>
+                                <embed src="{{ url_for('static', filename='imagens/video1.mp4') }}" type="application/x-shockwave-flash" allowfullscreen="false" allowscriptaccess="always">
+                                </object>
+                                Unsupported format
+                        </video>
+                 </div>
+        </div>
+</div>
+</body>
+</html>

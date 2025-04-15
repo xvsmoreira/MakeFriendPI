@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html lang=”pt-br”>
+	<head>
+		<title>Make a Friend</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+	<body class="is-preload">
+			<div id="wrapper">
+				<header id="header">
+					<h1><a href="{{ url_for('index') }}">Make a Friend</a></h1>
+					<nav class="links">
+					  <ul>
+						<li><a href="{{ url_for('adote') }}">Adote seu Pet</a></li>
+						<li><a href="{{ url_for('doeseupet') }}">Doe Seu Pet</a></li>
+						<li><a href="{{ url_for('quemsomos') }}">Quem Somos</a></li>
+					</ul>
+					<button id="toggle-theme" class="toggle-button" style="position: absolute; top: 10px; right: 10px;">C</button>
+				  </nav>
+				  
+									<script>/*Java modo escuro*/
+										const toggleButton = document.getElementById('toggle-theme');
+										const body = document.body;
+									
+										toggleButton.addEventListener('click', () => {
+										body.classList.toggle('dark-mode');
+										});
+									</script>
+
+											<style>
+												.toggle-button {
+												background-color: #333;
+												color: #fff; 
+												border: none;
+												padding: 10px 20px;
+												font-size: 16px;
+												cursor: pointer;
+												}
+												.toggle-button:hover {
+												background-color: #444;
+												}
+												.dark-mode .toggle-button {
+												background-color: #fff;
+												color: #333;
+												}
+											</style>
+
+					<div class="filters">
+					  <form action="{{ url_for('filtro') }}" method="get">
+						<br><br><label for="cidade"><center><h2>Informe <br>a <br>Cidade<br>que<br>procura</label</h2></center></label><br>
+						<select id="cidade" name="cidade">
+							<option value="">Todas as cidades</option>
+							<option value="Arujá">Arujá</option>
+							<option value="Biritiba-Mirim">Biritiba-Mirim</option>
+							<option value="Ferraz de Vasconcelos">Ferraz de Vasconcelos</option>
+							<option value="Guararema">Guararema</option>
+							<option value="Itaquaquecetuba">Itaquaquecetuba</option>
+							<option value="Mogi das Cruzes">Mogi das Cruzes</option>
+							<option value="Poá">Poá</option>
+							<option value="Salesópolis">Salesópolis</option>
+							<option value="Santa Isabel">Santa Isabel</option>
+							<option value="Suzano">Suzano</option>
+						  </select>
+						<br>
+						<button type="submit">Buscar</button>
+					  </form>
+					</div>
+					<nav class="main">
+					</nav>
+				  </header>
+            </div> 
+			<div vw class="enabled"> <!-- Vlibras -->
+				<div vw-access-button class="active"></div>
+				<div vw-plugin-wrapper>
+				  <div class="vw-plugin-top-wrapper"></div>
+				</div>
+			</div>
+			  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+			  <script>
+				new window.VLibras.Widget('https://vlibras.gov.br/app');
+			  </script>
+			<br>
+				{% for pet in pets %}
+				<div class="container5">
+					<div class="animal-card">
+						<div class="animal-grid">
+									<img src="{{ url_for('servir_imagem', filename=pet.foto) }}" alt="{{ pet.nome }}" width="100%">
+
+								<center><h3>Nome do Pet</h3>
+									<p>{{ pet.nome }}</p><br>
+									<h3>Idade do Pet</h3>
+									<p>{{ pet.idade }} anos</p><br>
+									<h3>Localização</h3>
+									<p>{{ pet.cidade }}</p></center><br>
+									<form action="{{ url_for('view_pet', pet_id=pet.id) }}">
+										<button type="submit" class="button-link">Esse pet é meu</button>
+									</form>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+				
+	</body>	
+ </html>    
