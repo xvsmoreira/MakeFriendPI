@@ -1,4 +1,4 @@
-﻿alembic==1.13.2
+alembic==1.13.2
 aniso8601==9.0.1
 blinker==1.8.1
 cachelib==0.13.0
